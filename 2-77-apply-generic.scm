@@ -1,5 +1,5 @@
-#lang racket
-
+; #lang racket
+; 需要R5RS版本环境，使用set-cdr!等过程
 
 ; ---------------------- 修改过的复数包：------------------------
 
@@ -61,7 +61,7 @@
     (define (imag-part z) (apply-generic 'imag-part z))
     (define (magnitude z) (apply-generic 'magnitude z))
     (define (angle z) (apply-generic 'angle z))
-    
+
     ; 新增
     (put 'real-part '(complex) real-part)
 
@@ -169,10 +169,11 @@
                     (list op type-tags))))))
 
 ; magnitude 、 angle 等四个通用选择器：
-; (define (real-part z) (apply-generic 'real-part z))
-; (define (imag-part z) (apply-generic 'imag-part z))
-; (define (magnitude z) (apply-generic 'magnitude z))
-; (define (angle z) (apply-generic 'angle z))
+; 不知道为什么real-part等这4个是constant了，不能重名了。
+(define (real-part-general z) (apply-generic 'real-part z))
+(define (imag-part-general z) (apply-generic 'imag-part z))
+(define (magnitude-general z) (apply-generic 'magnitude z))
+(define (angle-general z) (apply-generic 'angle z))
 
 ; get、put过程
 (define (make-table)
@@ -233,4 +234,4 @@
 (install-polar-package)
 (install-complex-package)
 
-(magnitude (make-complex-from-real-imag 3 4))
+(magnitude-general (make-complex-from-real-imag 3 4))
