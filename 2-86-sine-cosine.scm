@@ -29,3 +29,5 @@
  (define (div-complex z1 z2) 
    (make-from-mag-ang (div (magnitude z1) (magnitude z2)) 
                       (sub (angle z1) (angle z2)))) 
+
+; 应该写一个通用的add、sub、mul、div的过程，针对整数、有理数、实数等都可以运行。
